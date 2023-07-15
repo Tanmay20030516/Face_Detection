@@ -5,22 +5,22 @@ from tensorflow.keras.models import load_model
 
 face_detector = load_model('model/face_recog.h5')
 
-cap = cv.VideoCapture(0)
-while cap.isOpened():
-    _ , frame = cap.read()
-    frame = frame[60:700, 20:500,:]
+cap = cv.VideoCapture(0) # access the web cam
+while cap.isOpened(): # continue the loop until the webcam is open
+    _ , frame = cap.read() # read the frames
+    frame = frame[60:700, 60:700,:] # crop the frames
 
     rgb = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
-    resized = tf.image.resize(rgb, (120,120))
+    resized = tf.image.resize(rgb, (120,120)) # cv2 reads color as BGR
 
     yhat = face_detector.predict(np.expand_dims(resized/255,0))
-    sample_coords = yhat[1][0]
+    sample_coords = yhat[1][0] # b box coordinates
 
     if yhat[0] > 0.7: # confidence of detection of face
         # Controls the main rectangle
         cv.rectangle(frame,
-                      tuple(np.multiply(sample_coords[:2], [640,480]).astype(int)),
-                      tuple(np.multiply(sample_coords[2:], [640,480]).astype(int)),
+                      tuple(np.multiply(sample_coords[:2], [450,450]).astype(int)),
+                      tuple(np.multiply(sample_coords[2:], [450,450]).astype(int)),
                             (255,0,0), 2)
         # Controls the label rectangle
         cv.rectangle(frame,
