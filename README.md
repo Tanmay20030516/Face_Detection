@@ -19,7 +19,7 @@
 
 ## Model, Architecture and Loss Functions
 + MobileNet architecture consists of two blocks. (_refer article_)
-![mobilenetv2](helpers\mobilenetv2architecture.jpg)
+![mobilenetv2](helpers/mobilenetv2architecture.jpg)
 + Since it is **localization** model, it has two tasks namely **classification** and **regression**.
 + Classification deals with **probability of detecting a face**, and Regression deals with **estimating bounding box coordinates**.
 + **Binary crossentropy** loss was used for classification and **Mean squared error** for regression. A **weighted sum** of these losses was taken to define the total loss.
@@ -27,11 +27,11 @@
 ## Performance
 + The model performed quite well considering the availibility of data.
 + Below are the plot for training
-![train_plot](helpers\plot.png)
+![train_plot](helpers/plot.png)
 + As observed, further training was stopped to avoid overfitting to train data.
 
 ## Result
-![face_detected](helpers\Screenshot(319).png)
+![face_detected](helpers/Screenshot(319).png)
 
 ## Running locally
 + clone this repo in local machine.
